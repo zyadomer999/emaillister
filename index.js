@@ -22,7 +22,7 @@ const options = {
   onProxyReq(proxyReq, req, res) {
     proxyReq.setHeader(
       "Authorization",
-      "Bearer ya29.a0AfH6SMBDHi2_Tyf8UACFpmTidfzmd4xwRRXSWxGFQHQERhFJ8g2jKaq1mnKPpsYlW7OHVcjZ_AfSII-XjQ5CC5y389ZV39T9Euu4G_gnrVCkovWRGuOsn-TZOgY2XKyBnEaAdbjmNrVyNoOJ2mGf8hgn6zri8soyscPw"
+      "Bearer ya29.a0AfH6SMAjlnF_DX4iRQG7wn2qSIUs9lo8ch51fnIN1pVKuhW2JB6Ai-xz1W1SuHuJh4hm026zaIIq6iWaASeDyyOuyuOSeEog_3LUkkmgdQ0R2BOTPLcEZsLA8GMbkT_bFW-YP10X-ZGrP9KFIFGuoLiUudoj3xvbygji"
     );
   },
 };
