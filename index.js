@@ -7,7 +7,7 @@ app.use(cors({}));
 
 const options = {
   target:
-    "https://www.googleapis.com/drive/v3/files/1BMe8dz24vju_EF1gUNNes_W44kQ6KnQH?alt=media&key=AIzaSyBZPjQlDk4OxceFNheRf1gH1m1HgWM86-I", // target host
+    "https://www.googleapis.com/drive/v3/files/1Hx2kfi12vK-QecGn5wWb16xOMTLxZAph?alt=media&key=AIzaSyBZPjQlDk4OxceFNheRf1gH1m1HgWM86-I", // target host
   changeOrigin: true, // needed for virtual hosted sites
   ws: true, // proxy websockets
   pathRewrite: {
