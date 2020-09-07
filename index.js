@@ -1,10 +1,9 @@
-const express = require("express");
+var express = require("express");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const cors = require("cors");
 const app = express();
-app.use(cors());
+app.use(cors({}));
 
-// proxy middleware options
 const options = {
   target:
     "https://www.googleapis.com/drive/v3/files/1BMe8dz24vju_EF1gUNNes_W44kQ6KnQH?alt=media&key=AIzaSyBZPjQlDk4OxceFNheRf1gH1m1HgWM86-I", // target host
@@ -22,12 +21,12 @@ const options = {
   onProxyReq(proxyReq, req, res) {
     proxyReq.setHeader(
       "Authorization",
-      "Bearer ya29.a0AfH6SMAjlnF_DX4iRQG7wn2qSIUs9lo8ch51fnIN1pVKuhW2JB6Ai-xz1W1SuHuJh4hm026zaIIq6iWaASeDyyOuyuOSeEog_3LUkkmgdQ0R2BOTPLcEZsLA8GMbkT_bFW-YP10X-ZGrP9KFIFGuoLiUudoj3xvbygji"
+      "Bearer ya29.a0AfH6SMCiFZkq6C9xUKxD4zH2pE1FD0RcV9oK8KSuUWDZX6vmytv4jVYJKgYbBMxvwtcHl-bzvrE2d-aCc48oCSIcCu_3V0Ovp6ASoIoFmsC5thQ3e4s7SgbThWpGjOPc-5TsLvAd1dANQXmz_Ilf9H2nM6_gP9j_oBc4"
     );
   },
 };
 
-// create the proxy (without context)
 const exampleProxy = createProxyMiddleware(options);
 app.use("/api", exampleProxy);
-app.listen(process.env.PORT || 3000);
+app.use(express.static("client"));
+app.listen(process.env.PORT || 5000);
