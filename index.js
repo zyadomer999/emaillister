@@ -1,4 +1,5 @@
-var express = require("express");
+const port = process.env.PORT || 5000;
+const express = require("express");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const cors = require("cors");
 const app = express();
@@ -21,7 +22,7 @@ const options = {
   onProxyReq(proxyReq, req, res) {
     proxyReq.setHeader(
       "Authorization",
-      "Bearer ya29.a0AfH6SMCiFZkq6C9xUKxD4zH2pE1FD0RcV9oK8KSuUWDZX6vmytv4jVYJKgYbBMxvwtcHl-bzvrE2d-aCc48oCSIcCu_3V0Ovp6ASoIoFmsC5thQ3e4s7SgbThWpGjOPc-5TsLvAd1dANQXmz_Ilf9H2nM6_gP9j_oBc4"
+      "Bearer ya29.a0AfH6SMAr6jXVLFHUT-4HmY8LxehFGCeBjrHii5nVXoe4A6LrMcKeo-S6597IpwmQTuWX2PczNsY84R0nwmqZkbtX1J1ZF30KCjhqdVCrhxeTxyq1gjS96CCjDeSFsd7eyJ09dXlxR-7bFp-bhZvM3Yxj1TFSRCp65NhD"
     );
   },
 };
@@ -29,4 +30,6 @@ const options = {
 const exampleProxy = createProxyMiddleware(options);
 app.use("/api", exampleProxy);
 app.use(express.static("client"));
-app.listen(process.env.PORT || 5000);
+app.listen(port);
+
+exports.port = port;
