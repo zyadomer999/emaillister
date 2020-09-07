@@ -9,17 +9,18 @@
       content="width=device-width, initial-scale=1"
     />
     <link rel="stylesheet" href="./index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="./main.js" defer></script>
   </head>
   <body>
     <main>
       <video
-        src="./server"
         autoplay
         muted="muted"
         onerror="set()"
         width="100%"
         controls
+        id="video"
       ></video>
     </main>
   </body>
