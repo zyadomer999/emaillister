@@ -30,4 +30,4 @@ const options = {
 // create the proxy (without context)
 const exampleProxy = createProxyMiddleware(options);
 app.use("/api", exampleProxy);
-app.listen(3000);
+app.listen(process.env.PORT || 3000);

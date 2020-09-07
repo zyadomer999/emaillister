@@ -12,12 +12,20 @@
   <body>
     <a href=""></a>
     <video
-      src="http://localhost:3000/api"
+      src=""
+      onerror="set()"
       autoplay
       controls
       width="100%"
       muted
     ></video>
     <h1>Helrlo</h1>
+    <script>
+      function set() {
+        document.querySelector(
+          "video"
+        ).src = `http://localhost:${process.env.PORT}/api`;
+      }
+    </script>
   </body>
 </html>
