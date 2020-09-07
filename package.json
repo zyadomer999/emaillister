@@ -10,7 +10,6 @@
   },
   "keywords": [],
   "author": "",
-  "homepage": "https://zyadomer999.github.io/myWebsite",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
@@ -26,7 +25,8 @@
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.4",
-    "utils": "^0.3.1"
+    "utils": "^0.3.1",
+    "http-proxy-middleware": "^1.0.5"
   },
   "devDependencies": {
     "http-proxy-middleware": "^1.0.5"
