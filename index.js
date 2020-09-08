@@ -5,20 +5,22 @@ const cors = require("cors");
 const app = express();
 
 const authToken =
-  "Bearer ya29.a0AfH6SMA1idHdaD5yGplr_sM1agAzM0oKr3iMWLYzZwvksp08YkffLOEBzC5IKjwTGgfWoWePdB60qW_spDgmojuwTKfztX5r9QAgD0YlrHpPP0zlus4Rjjj2jOC5rLOptYTtHoo8sdHjcwSgbM7AIbpbQ0mJGmmlDNDF";
-app.use(cors({}));
+  "Bearer ya29.a0AfH6SMDkcca9YA6R1OAiY0y3rMUuL378Fo-wRS5fQN7iIgVS6JNeqzFCo4C3SYknqeRnho9Lz4KwdAGe5HbzIbQ2ULh1FW7ye97RR_hAqCIjZGv5iPPKsG57ZtG1GBiY9crxVuEFV9KvonZznhXoqLLgzBJz0AxdoFop";
+// app.use(
+//   cors({
+//     origin: "http://yourapp.com",
+//   })
+// );
 function initiate(link) {
   const options = {
-    target: link, // target host
-    changeOrigin: true, // needed for virtual hosted sites
-    ws: true, // proxy websockets
+    target: link,
+    changeOrigin: true,
+    ws: true,
     pathRewrite: {
-      "^/api/old-path": "/api/new-path", // rewrite path
-      "^/api/remove/path": "/path", // remove base path
+      "^/api/old-path": "/api/new-path",
+      "^/api/remove/path": "/path",
     },
     router: {
-      // when request.headers.host == 'dev.localhost:3000',
-      // override target 'http://www.example.org' to 'http://localhost:8000'
       "dev.localhost:3000": "http://localhost:8000",
     },
     onProxyReq(proxyReq, req, res) {
@@ -28,19 +30,12 @@ function initiate(link) {
   return createProxyMiddleware(options);
 }
 
-// const exampleProxy = createProxyMiddleware(options);
 app.use(express.static("client"));
-
+app.listen(port);
 app.use(
   "/server",
   initiate(
     "https://www.googleapis.com/drive/v3/files/1BdYsNHQ-PVxVZbmv5x_gHKYBb9SFLc20?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
-  )
-);
-app.use(
-  "/local",
-  initiate(
-    "https://www.googleapis.com/drive/v3/files/1S-qOU_YElZjmCua-P_kMo7bkgSBbiWXC?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
   )
 );
 app.use(
@@ -805,8 +800,3 @@ app.use(
     "https://www.googleapis.com/drive/v3/files/1vn6X_TdHSSpRdh7W_v7Bns7zaTTVkTis?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
   )
 );
-
-app.listen(port);
-
-exports.port = port;
-app.setMaxListeners(1000000);
