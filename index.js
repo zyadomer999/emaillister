@@ -2,9 +2,8 @@ const port = process.env.PORT || 5000;
 const express = require("express");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const app = express();
-
 const authToken =
-  "Bearer ya29.a0AfH6SMBPmBpfKoMBY3EotmgKLbmbG1mFKHcpkXTOHDwblZ-6gkW4pOZDSPs2ri_rGVkokZAFHHkRbGgeBO8S1qfQVDtJzCyNtfUGlB8r0ZehJZUWldIAHfzHcpHB-yoAWq9eBoQi58wHCl3jiBbpP5INf_udUDcnp7EL";
+  "Bearer ya29.a0AfH6SMCHhiOgjdwVNtecvwYqwHHnkmNK5KszKw0NSprRoTWx2gzo8tnf_1EPFrA_9PC7tlZ5smUDiHU4rapW7PNhDKflHW4PotVl6O0gWzIVpOfnYYbEx6PkcDBk5DH9cHYsg-b7aZI-NbuwsWTZKgw-qOkx8giV1Rfd";
 
 function initiate(link) {
   const options = {
@@ -31,19 +30,40 @@ function initiate(link) {
 app.use(express.static("client"));
 app.listen(port);
 
-app.use(
-  "/mn",
-  initiate(
-    "https://www.googleapis.com/drive/v3/files/1BMe8dz24vju_EF1gUNNes_W44kQ6KnQH?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
-  )
-);
+setInterval(function () {
+  app._router.stack[3].regexp = new RegExp(
+    `^\/server${new Date().getSeconds() - 1}\/?(?=\/|$)`,
+    "i"
+  );
+  app._router.stack[4].regexp = new RegExp(
+    `^\/server${new Date().getSeconds()}\/?(?=\/|$)`,
+    "i"
+  );
+  app._router.stack[5].regexp = new RegExp(
+    `^\/server${new Date().getSeconds() + 1}\/?(?=\/|$)`,
+    "i"
+  );
+}, 1000);
 
 app.use(
-  "/server",
+  `/server${new Date().getSeconds() - 1}`,
   initiate(
     "https://www.googleapis.com/drive/v3/files/1BdYsNHQ-PVxVZbmv5x_gHKYBb9SFLc20?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
   )
 );
+app.use(
+  `/server${new Date().getSeconds()}`,
+  initiate(
+    "https://www.googleapis.com/drive/v3/files/1BdYsNHQ-PVxVZbmv5x_gHKYBb9SFLc20?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
+  )
+);
+app.use(
+  `/server${new Date().getSeconds() + 1}`,
+  initiate(
+    "https://www.googleapis.com/drive/v3/files/1BdYsNHQ-PVxVZbmv5x_gHKYBb9SFLc20?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
+  )
+);
+
 app.use(
   "/video0",
   initiate(
