@@ -1,16 +1,11 @@
 const port = process.env.PORT || 5000;
 const express = require("express");
 const { createProxyMiddleware } = require("http-proxy-middleware");
-const cors = require("cors");
 const app = express();
 
 const authToken =
-  "Bearer ya29.a0AfH6SMDkcca9YA6R1OAiY0y3rMUuL378Fo-wRS5fQN7iIgVS6JNeqzFCo4C3SYknqeRnho9Lz4KwdAGe5HbzIbQ2ULh1FW7ye97RR_hAqCIjZGv5iPPKsG57ZtG1GBiY9crxVuEFV9KvonZznhXoqLLgzBJz0AxdoFop";
-// app.use(
-//   cors({
-//     origin: "http://yourapp.com",
-//   })
-// );
+  "Bearer ya29.a0AfH6SMBPmBpfKoMBY3EotmgKLbmbG1mFKHcpkXTOHDwblZ-6gkW4pOZDSPs2ri_rGVkokZAFHHkRbGgeBO8S1qfQVDtJzCyNtfUGlB8r0ZehJZUWldIAHfzHcpHB-yoAWq9eBoQi58wHCl3jiBbpP5INf_udUDcnp7EL";
+
 function initiate(link) {
   const options = {
     target: link,
@@ -21,7 +16,10 @@ function initiate(link) {
       "^/api/remove/path": "/path",
     },
     router: {
-      "dev.localhost:3000": "http://localhost:8000",
+      "dev.localhost:5501": "http://localhost:5501",
+    },
+    headers: {
+      origin: "noWay",
     },
     onProxyReq(proxyReq, req, res) {
       proxyReq.setHeader("Authorization", authToken);
@@ -32,6 +30,14 @@ function initiate(link) {
 
 app.use(express.static("client"));
 app.listen(port);
+
+app.use(
+  "/mn",
+  initiate(
+    "https://www.googleapis.com/drive/v3/files/1BMe8dz24vju_EF1gUNNes_W44kQ6KnQH?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
+  )
+);
+
 app.use(
   "/server",
   initiate(
