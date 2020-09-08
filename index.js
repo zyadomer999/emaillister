@@ -863,6 +863,6 @@ function initiate(link) {
 }
 
 start();
-
+setInterval(start, 3300000);
 app.use(express.static("client"));
 app.listen(port);
