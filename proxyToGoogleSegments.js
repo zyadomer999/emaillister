@@ -43,22 +43,11 @@ async function start() {
   await getFreshToken().then((access_token) => {
     authToken = access_token;
   });
+  console.log(authToken);
   app.use(
-    `/server${new Date().getSeconds() - 1}`,
+    "server",
     initiate(
-      "https://www.googleapis.com/drive/v3/files/1BdYsNHQ-PVxVZbmv5x_gHKYBb9SFLc20?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
-    )
-  );
-  app.use(
-    `/server${new Date().getSeconds()}`,
-    initiate(
-      "https://www.googleapis.com/drive/v3/files/1BdYsNHQ-PVxVZbmv5x_gHKYBb9SFLc20?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
-    )
-  );
-  app.use(
-    `/server${new Date().getSeconds() + 1}`,
-    initiate(
-      "https://www.googleapis.com/drive/v3/files/1BdYsNHQ-PVxVZbmv5x_gHKYBb9SFLc20?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
+      "https://www.googleapis.com/drive/v3/files/1Hx2kfi12vK-QecGn5wWb16xOMTLxZAph?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
     )
   );
 
@@ -844,14 +833,6 @@ function initiate(link) {
   const options = {
     target: link,
     changeOrigin: true,
-    ws: true,
-    pathRewrite: {
-      "^/api/old-path": "/api/new-path",
-      "^/api/remove/path": "/path",
-    },
-    router: {
-      "dev.localhost:5501": "http://localhost:5501",
-    },
     headers: {
       origin: "noWay",
     },
@@ -862,8 +843,8 @@ function initiate(link) {
   return createProxyMiddleware(options);
 }
 
+app.use(express.static("client"));
 start();
 setInterval(start, 3300000);
 app.setMaxListeners(1000);
-app.use(express.static("client"));
 app.listen(port);
