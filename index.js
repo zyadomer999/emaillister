@@ -78,7 +78,7 @@ async function start() {
     )
   );
   app.use(
-    `/server${server(new Date(), +2)}`,
+    `/server`,
     initiate(
       "https://www.googleapis.com/drive/v3/files/1-uqjC3xUjPdI_empNIKF2mzplRNdViyP?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
     )

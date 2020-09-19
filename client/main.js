@@ -14,12 +14,13 @@ video.addEventListener("canplay", function () {
 });
 if (Hls.isSupported()) {
   var hls = new Hls();
-  hls.loadSource(`/server${server(new Date(), 0)}`);
+  // hls.loadSource(`/server${server(new Date(), 0)}`);
+  hls.loadSource(`/server`);
   hls.attachMedia(video);
   hls.on(Hls.Events.MANIFEST_PARSED, function () {
     video.play();
   });
 } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-  video.src = `/server${server(new Date(), 0)}`;
+  video.src = `/server`;
   video.play();
 }
