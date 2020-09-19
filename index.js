@@ -83,7 +83,6 @@ async function start() {
       "https://www.googleapis.com/drive/v3/files/1-uqjC3xUjPdI_empNIKF2mzplRNdViyP?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
     )
   );
-  console.log(app._router.stack);
   setInterval(function () {
     app._router.stack[3].regexp = new RegExp(
       `^\/server${server(new Date(), -2)}\/?(?=\/|$)`,
