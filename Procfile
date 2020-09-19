@@ -1,1 +1,1 @@
-web: node pet.js
+web: node index.js
