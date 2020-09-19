@@ -100,10 +100,10 @@ async function start() {
       `^\/server${server(new Date(), 1)}\/?(?=\/|$)`,
       "i"
     );
-    app._router.stack[7].regexp = new RegExp(
-      `^\/server${server(new Date(), 2)}\/?(?=\/|$)`,
-      "i"
-    );
+    // app._router.stack[7].regexp = new RegExp(
+    //   `^\/server${server(new Date(), 2)}\/?(?=\/|$)`,
+    //   "i"
+    // );
   }, 1000);
 }
 
