@@ -54,56 +54,56 @@ async function start() {
     authToken = access_token;
   });
   app.use(
-    `/server${server(new Date(), -2)}`,
+    `/server${server(new Date().toUTCString(), -2)}`,
     initiate(
       "https://www.googleapis.com/drive/v3/files/1-uqjC3xUjPdI_empNIKF2mzplRNdViyP?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
     )
   );
   app.use(
-    `/server${server(new Date(), -1)}`,
+    `/server${server(new Date().toUTCString(), -1)}`,
     initiate(
       "https://www.googleapis.com/drive/v3/files/1-uqjC3xUjPdI_empNIKF2mzplRNdViyP?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
     )
   );
   app.use(
-    `/server${server(new Date(), 0)}`,
+    `/server${server(new Date().toUTCString(), 0)}`,
     initiate(
       "https://www.googleapis.com/drive/v3/files/1-uqjC3xUjPdI_empNIKF2mzplRNdViyP?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
     )
   );
   app.use(
-    `/server${server(new Date(), +1)}`,
+    `/server${server(new Date().toUTCString(), +1)}`,
     initiate(
       "https://www.googleapis.com/drive/v3/files/1-uqjC3xUjPdI_empNIKF2mzplRNdViyP?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
     )
   );
   app.use(
-    `/server`,
+    `/server${server(new Date().toUTCString(), +2)}`,
     initiate(
       "https://www.googleapis.com/drive/v3/files/1-uqjC3xUjPdI_empNIKF2mzplRNdViyP?alt=media&key=AIzaSyBPR7Y-KhcVd0mJYOXMrB6bOo6q_0mdNE0"
     )
   );
   setInterval(function () {
     app._router.stack[3].regexp = new RegExp(
-      `^\/server${server(new Date(), -2)}\/?(?=\/|$)`,
+      `^\/server${server(new Date().toUTCString(), -2)}\/?(?=\/|$)`,
       "i"
     );
     app._router.stack[4].regexp = new RegExp(
-      `^\/server${server(new Date(), -1)}\/?(?=\/|$)`,
+      `^\/server${server(new Date().toUTCString(), -1)}\/?(?=\/|$)`,
       "i"
     );
     app._router.stack[5].regexp = new RegExp(
-      `^\/server${server(new Date(), 0)}\/?(?=\/|$)`,
+      `^\/server${server(new Date().toUTCString(), 0)}\/?(?=\/|$)`,
       "i"
     );
     app._router.stack[6].regexp = new RegExp(
-      `^\/server${server(new Date(), 1)}\/?(?=\/|$)`,
+      `^\/server${server(new Date().toUTCString(), 1)}\/?(?=\/|$)`,
       "i"
     );
-    // app._router.stack[7].regexp = new RegExp(
-    //   `^\/server${server(new Date(), 2)}\/?(?=\/|$)`,
-    //   "i"
-    // );
+    app._router.stack[7].regexp = new RegExp(
+      `^\/server${server(new Date().toUTCString(), 2)}\/?(?=\/|$)`,
+      "i"
+    );
   }, 1000);
 }
 
